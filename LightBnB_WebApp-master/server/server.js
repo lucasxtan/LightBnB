@@ -1,3 +1,22 @@
+const { Pool, Client } = require('pg')
+const client = new Client({ 
+  user: 'labber',
+  password: 'labber',
+  host: 'localhost',
+  database: 'lightbnb',
+  port: 5432
+});
+  // client.connect() client.query('SELECT NOW()', (err, res) => { console.log(err, res) client.end() }) 
+
+// the following assumes that you named your connection variable `pool`
+
+client.query('SELECT title from properties LIMIT 10', (err, res) => {
+  console.log("HELLLO")
+  console.log(err, res)
+  client.end()
+})
+// client.query(`SELECT title FROM properties LIMIT 10;`).then(response => {console.log("response", response)})
+
 const database = require('./database');
 const apiRoutes = require('./apiRoutes');
 const userRoutes = require('./userRoutes');
